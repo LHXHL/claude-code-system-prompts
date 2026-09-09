@@ -1,7 +1,7 @@
 <!--
 name: "Data: Self-hosted runner command help"
 description: "Documents self-hosted runner connection, runtime, lifecycle, watchdog, security, health, and debug command-line options"
-ccVersion: "2.1.260"
+ccVersion: "2.1.267"
 variables:
   - "DEFAULT_SELF_HOSTED_RUNNER_API_URL"
   - "PROXY_AUTHORIZATION_COMMAND_ENV_VAR"
@@ -87,10 +87,22 @@ Runtime:
   --git-host-rewrite <f>=<t>  Rewrite https://<f>/... source URLs to https://<t>/... (repeatable).
                               For split-horizon DNS where the runner reaches GHE via a different
                               hostname than the control plane. Applied before --git-ssh-rewrite.
-  --use-anthropic-git-proxy   Clone via Anthropic's git proxy (uses the session creator's stored
-                              GitHub OAuth token, or the org's GitHub App installation token for
-                              bot/agent sessions; you don't manage git auth on the runner). Supersedes
-                              --git-host-rewrite and --git-ssh-rewrite.
+  --use-anthropic-git-proxy   Opt this runner into Anthropic-managed git (clones are authenticated
+                              server-side with the session creator's stored GitHub OAuth token, or
+                              the org's GitHub App installation token for bot/agent sessions; you
+                              don't manage git auth on the runner). Supersedes --git-host-rewrite
+                              and --git-ssh-rewrite.
+                              WARNING: deletes and replaces the HOME-level git config of the
+                              account running the runner: ~/.gitconfig, the GIT_CONFIG_GLOBAL target
+                              if set, and the whole $XDG_CONFIG_HOME/git directory (default
+                              ~/.config/git; config, ignore, attributes and anything else in it),
+                              at startup and before every session, with no backup, so one session's
+                              git settings cannot reach the next.
+                              The replacement holds only this runner's git credential settings for
+                              the Anthropic API host (plus the --configure-git settings, if set) and
+                              is left in place when the runner exits. Run this flag only under a
+                              dedicated runner account or container, never a personal login; keep
+                              operator git config in /etc/gitconfig or use --configure-git.
                               [env: CLAUDE_RUNNER_USE_GIT_PROXY=1]
   --configure-git             Set global git identity to Claude <noreply@anthropic.com> and enable
                               commit signing via Anthropic's signing service, matching 1P sessions.
