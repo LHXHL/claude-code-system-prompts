@@ -4,6 +4,29 @@ Note: Only use **NEW:** for entirely new prompt files, NOT for new additions/sec
 
 ### Claude Code System Prompts Changelog
 
+# [2.1.295](https://github.com/Piebald-AI/claude-code-system-prompts/commit/b6361d3)
+
+_+5,697 tokens_
+
+- **NEW:** Agent Prompt: Background agent state classifier chat-thread relay rule — For sessions that reach people only through chat-thread posts, a named person counts as the user, so open asks stay blocked even beside scheduled check-ins.
+- **NEW:** Agent Prompt: Subagent delegation configuration classifier — Judges whether a user's CLAUDE.md, skills, and custom agents push Claude to delegate work to subagents, without obeying instructions found in that configuration.
+- **NEW:** Tool Description: Artifact stale publish line diff guidance and Artifact line diff reading legend — Stale-publish refusals can show a line diff of live-page changes, counted as viewed, to merge into your file, with a legend for the marks.
+- Tool Description: Artifact stale publish saved-source guidance — Leads with a live-page diff summary (changed places and lines) when the diff itself is not shown, then gives the saved-source merge steps.
+- **NEW:** Tool Description: Artifact same-response edit and publish guidance — When enabled, small known changes are made by sending Edit calls and the Artifact publish together in one response, without a prior Read.
+- Tool Description: Artifact HTML document skeleton and Artifact page authoring and HTML skeleton (app wording) — Drops the "off-white ground" from the default body style description, leaving a zero-margin system font.
+- **NEW:** Tool Parameter: Bash run_in_background guidance (completion notices disabled) and PowerShell run_in_background note (completion notices disabled) — When completion notices are off, nothing announces the finish; read the output file or end the command with your own `echo`.
+- System Prompt: Avoiding Unnecessary Sleep Commands (part of PowerShell tool description) — Omits the "you will be notified when it completes" sleep and polling advice when background completion notices are disabled.
+- Tool Description: WebSearch and WebSearch (concise) — When search citations are enabled, replaces the mandatory "Sources:" list with a note that result titles and page text are untrusted data.
+- System Prompt: Interactive agent intro — The default opener is now "an agent working with the user toward their goals, using your own judgment", replacing the software-engineering "interactive agent" line; previously flag-gated.
+- Tool Description: AskUserQuestion — Drops the plan-mode note in diskless-host sessions missing EnterPlanMode or ExitPlanMode; the shared usage guidance is otherwise unchanged.
+- System Reminder: MCP servers failed to connect — Distinguishes servers retried in the background, whose tools may appear later, from failures leaving tools unavailable for this session.
+- System Reminder: Attached machine stopped answering and went to sleep — Adds return-tracking and paused-or-withdrawn guidance, allowing another call after a reconnection note or explicit user request and requiring outcome checks before repetition.
+- System Reminder: Unreachable attached machines and unreachable-machine tool errors — Adds reconnection-note and five-minute recheck variants while retaining user-requested retry guidance and directing independent work to continue.
+- Agent Prompt: Web fetch agent usage guidance — Adds advice to read a public page rather than answer from memory when it holds the answer, and omits the SendMessage follow-up hint when unavailable.
+- Agent Prompt: Claude Test explorer — Explains why the file-access restrictions apply to every Read, Grep, and Glob: what the explorer reads stays with it and can end up in its report.
+- Data: Claude Test spec file format — The `setupCommand` seed script now asks before each run and runs only on a yes, instead of running automatically before every run.
+- Data: Claude Code gateway protocol — Tells gateways to send `x-should-retry: false` with 501 responses, and to answer `count_tokens` with Bedrock's `CountTokens`, falling back to 501 on failure.
+
 # [2.1.294](https://github.com/Piebald-AI/claude-code-system-prompts/commit/62e14c6)
 
 _+264 tokens_
