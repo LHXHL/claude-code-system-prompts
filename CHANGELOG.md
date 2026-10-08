@@ -4,6 +4,23 @@ Note: Only use **NEW:** for entirely new prompt files, NOT for new additions/sec
 
 ### Claude Code System Prompts Changelog
 
+# [2.1.293](https://github.com/Piebald-AI/claude-code-system-prompts/commit/13dc4a6)
+
+_+2,629 tokens_
+
+- **NEW:** Data: Tool result display metadata field — Documents wrapper-level SDK metadata for non-execution reasons, remedies, permission decisions, and human denial feedback; never replayed to the model.
+- **NEW:** System Prompt: Finish the request instead of stopping early — Adds feature-gated Haiku 5.5 completion guidance: finish large and unblocked requests without unnecessary check-ins, while retaining approval for consequential actions.
+- **NEW:** System Reminder: Background command quiet check-in — Requires inspecting silent background commands for progress or hangs, stopping stuck work, and ending the turn for healthy long-running commands.
+- Tool Description: Artifact design fallback requirements, Artifact page implementation requirements (app wording) and Artifact publishing and update guidance — Require library URLs to pin exact versions at least two weeks old, rejecting bare names, ranges, and tags.
+- Data: Message Batches API reference — Python — The classification example now sets `max_tokens=1024` with low effort, noting Haiku's default thinking counts toward `max_tokens`.
+- Data: SDK result safety_stops field — Counts content-filter stops only when they end the call; retried stops remain uncounted, so zero does not rule them out.
+- Data: syncClaudeAiSkills setting — Skills re-sync about every 10 minutes while a session is in use, and a quarter as often otherwise.
+- Data: Background tasks changed event schema — Removes the claim that the payload carries only IDs while retaining the warning not to correlate level changes with edge events.
+- Tool Description: claude.ai Project — Adds a main-conversation upload mode for unchanged files read or written in full this session, using absolute paths without repeating their contents.
+- Tool Description: Agent (usage notes) and System Reminder: Async agent launched metadata — Condition continuation instructions on availability, explaining that unsupported sessions start fresh agents and omitting unusable SendMessage hints.
+- System Reminder: Remote Chrome browser extension not connected — For multi-organization users, requires matching the extension's organization; reserves logout for failed checks, with advance warning about erased shortcuts and scheduled tasks.
+- Agent Prompt: Claude Test explorer — Rewords the file-access restrictions to require compliance in every Read, Grep, and Glob instead of emphasizing the agent's sole responsibility.
+
 # [2.1.292](https://github.com/Piebald-AI/claude-code-system-prompts/commit/faf4b43)
 
 _+7,031 tokens_
