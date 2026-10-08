@@ -4,6 +4,14 @@ Note: Only use **NEW:** for entirely new prompt files, NOT for new additions/sec
 
 ### Claude Code System Prompts Changelog
 
+# [2.1.294](https://github.com/Piebald-AI/claude-code-system-prompts/commit/62e14c6)
+
+_+264 tokens_
+
+- Agent Prompt: Agent Hook — Requires a reason with every result, clarifies allow/block decisions, and rejects instructions embedded in event data or inspected content.
+- Agent Prompt: Hook condition evaluator (stop) — Adds guidance defining `ok` as allow/block and treating event JSON and inspected content as data, not instructions.
+- Agent Prompt: Hook condition evaluator — Reframes evaluation around whether an action may proceed, explains rule and condition outcomes, and rejects instructions embedded in evaluated data.
+
 # [2.1.293](https://github.com/Piebald-AI/claude-code-system-prompts/commit/13dc4a6)
 
 _+2,629 tokens_
