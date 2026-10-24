@@ -4,6 +4,39 @@ Note: Only use **NEW:** for entirely new prompt files, NOT for new additions/sec
 
 ### Claude Code System Prompts Changelog
 
+# [2.1.309](https://github.com/Piebald-AI/claude-code-system-prompts/commit/112a949)
+
+_+8,763 tokens_
+
+- **NEW:** Data: Code review startup token file descriptor error — Stderr error when a code review run doesn't get its two tokens on file descriptors 4 and 5, listing runner version, exec wrapper and token variable causes.
+- **NEW:** Data: MCP status control request liveReply field — Documents a flag that sends the `mcp_status` reply only to currently attached clients through CCR without storing it; a reply sent while the stream is down is lost.
+- **NEW:** Data: SDK result model_usage_since_last_result field — Documents an internal per-model usage and cost field counting calls since the previous result, meant to be summed across a conversation, with the calls it leaves out.
+- **NEW:** Data: Worktree creation submodule on-demand fetch disabled error — When a missing git object can't be fetched in a submodule whose git folder the sandbox can write, tells the user to inspect that folder for tampering and fetch the commit themselves.
+- **NEW:** Data: Worktree creation unsafe promisor remote error — Explains that a partial clone's missing objects weren't fetched because its promisor remote has an option-like name or no URL, and directs a check of the remote config.
+- **NEW:** System Prompt: Windows sandbox git credentials unavailable — Sandboxed git cannot use the user's saved HTTPS or SSH sign-in; Claude must not work around it and tells the user to run the fetch, pull or push themselves.
+- **NEW:** System Prompt: Windows sandbox git folder above working directory — When Claude Code starts in a repository subfolder, sandboxed commits fail on the parent `.git`; Claude checks for it, never runs `git init`, and tells the user to start at the root.
+- **NEW:** System Prompt: Windows sandbox repository creation prohibition — Forbids `git init` and cloning in the sandbox, since the sandbox account would own the repository and the user's git would refuse it; gives the user ordered steps instead.
+- **NEW:** System Reminder: Artifact file_path refusal for earlier wrong-path publication, Artifact file_path refusal for served path claimed by another file, and Artifact file_path refusal for unexpected new served path — Refuse an Artifact publish whose `file_path` would be served at an unexpected path, offering `files` entries or a `root` to correct it.
+- **NEW:** System Reminder: Browser extension not connected (mobile app) — When the user is on the Claude mobile app, where Claude in Chrome can't be set up, Claude says so briefly, gives no setup steps, and carries on another way.
+- **NEW:** System Reminder: Project document too large to rewrite refusal — Refuses a project doc write when the existing doc exceeds the inline read size, warning against retyping it from a partial view or deleting it.
+- **NEW:** System Reminder: Session moved to new runner resume prompt — After a session moves to a new runner, Claude verifies the working directory and checks what an interrupted tool call did before rerunning it.
+- **NEW:** System Reminder: Tool calls lost to session restart — Lists previous-turn tool calls that have no result after a session restart, telling Claude to check whether they ran before issuing them again.
+- **NEW:** Tool Description: MCP connector sign-in recheck — Stub tool for an installed connector whose sign-in stopped working; Claude calls it only when needed, relays sign-in or availability failures, and never asks for codes or tokens.
+- **NEW:** Tool Parameter: Artifact root directory — Adds a `root` base directory for resolving relative `files` sources without changing published paths; Artifact-type artifacts may use it alone, serving `file_path` relative to it.
+- **REMOVED:** Skill: Artifact PR review description (composed publish flow) — Removes the trigger description for creating a composed PR review briefing Artifact, which was updated only by republishing.
+- Agent Prompt: Claude Test author and Agent Prompt: Claude Test explorer — Add four Claude Test browser plugin tools (`claude_test_start_app`, `claude_test_confirm_run`, `claude_test_browser_installed`, `claude_test_remember`) to their tool denial lists.
+- Agent Prompt: Pull request creation, Agent Prompt: Quick PR creation, and Tool Description: Bash (PR creation instructions) — Add a warning about @-mentions in PR text, which notify the mentioned GitHub account; the Bash tool adds it as its own paragraph.
+- Data: Claude API reference (PHP, Ruby), Claude Platform on AWS reference, and Skill: Claude guide unavailable reference fallback — Say to "fetch" rather than "WebFetch" the SDK examples or page listed in `shared/live-sources.md`.
+- Data: Data visualization marks and anatomy — Labels inside a colored fill now use white or near-black, the same two in both light and dark modes, chosen by fill luminance, with `palette.md` naming each color's choice.
+- Data: OpenTelemetry tracing reference — C# — Registers the wildcard source `com.anthropic.sdk.csharp*` with `AddSource` so spans from the SDK's cloud-platform clients are included too, replacing the exact source name.
+- Data: OpenTelemetry tracing reference (C#, Go, Java, PHP, Python, Ruby, TypeScript) — After the SDK setup, Claude offers to set up Claude API tracing where `shared/opentelemetry.md` says to, if it hasn't already.
+- Data: Submit feedback control request — Adds that when the server refuses a submission for the organization or the report's content, the response carries both `unavailable_reason` and `failure_reason`.
+- Data: Tool use reference (C#, Ruby) — Reword when to use dynamic workflows: for a team of agents or work that fans out, instead of work too big to hand out one task at a time.
+- System Prompt: Self-hosted runner doctor — The startup-timeout log row now also covers a child that wrote nothing at all after a turn started, with host and wrapper checks to try instead.
+- Tool Description: Computer use unlinked chat guidance — Tells Claude the user may see a card about using their computer, to continue from it, to mention a made file can be moved there once linked, and to resume on "Continue".
+- Tool Description: ListConnectors and Tool Description: SearchMcpRegistry — A connector flagged as not loaded now means its tools are unavailable in this session for an unstated reason; Claude tells the user to check claude.ai connector settings.
+- Tool Description: New file-backed Artifact type content guidance — Republishing only changed files now also requires the same `url` and a `root` folder holding them at their served paths.
+
 #### [2.1.308](https://github.com/Piebald-AI/claude-code-system-prompts/commit/eb69409)
 
 <sub>_No changes to the system prompts in v2.1.308._</sub>
