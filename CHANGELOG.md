@@ -4,6 +4,27 @@ Note: Only use **NEW:** for entirely new prompt files, NOT for new additions/sec
 
 ### Claude Code System Prompts Changelog
 
+# [2.1.310](https://github.com/Piebald-AI/claude-code-system-prompts/commit/06a56c0)
+
+_+3,227 tokens_
+
+- **NEW:** Data: Artifact ask-first intake form instructions — Before creating a slides or design Artifact, Claude asks a few audience, scope and look questions in the Visualizer form, skipping when answers are already known.
+- **NEW:** Data: Sandbox worktrees directory listing failure warning — Warns that the sandbox cannot list a repository's worktrees folder, and whether sandboxed commands are write-denied there or can alter linked worktrees' files until the sandbox is rebuilt.
+- **NEW:** Skill: Claude API deprecated or retired models notice — Lists deprecated or retired Claude models found in the project with dates and replacements; Claude mentions them once and leaves existing model IDs unchanged unprompted.
+- **NEW:** Skill: Claude API Managed Agents onboarding from URL unavailable — When the skill's reference files couldn't be saved, Claude says setting up an agent from a URL is unavailable, that rerunning `/claude-api` retries, then stops.
+- **NEW:** System Reminder: Artifact comment wakes stopped by user — Tells Claude the user stopped Artifact comment watches or auto-replies, lists discarded pending notices, and says wakes stay off until Claude Code restarts and the artifact is republished.
+- **NEW:** System Reminder: Hook blocking reason (Git Bash not found, exit code 127) — Explains a hook blocks because Git Bash wasn't found and exited 127, how the user can fix it, and that Claude must not change the hook.
+- **NEW:** System Reminder: Project document rewrite without current text refusal — Refuses a project doc write when its current text isn't in context, requiring a `project_read` first and forbidding delete-and-rewrite.
+- **REMOVED:** Tool Description: CronCreate (durability note) — Removes the standalone durability section; its guidance now sits inline in CronCreate, shown only when durable cron is enabled.
+- Agent Prompt: Claude Test author and Agent Prompt: Claude Test explorer — Add the Claude Test browser plugin's `claude_test_pane_note` tool to their disallowed-tools lists.
+- Data: Artifact connector server naming guidance — The example connector segment is now `slack_example_com` instead of the fixed `claude_ai_Slack_beta` when a server-key naming feature flag is on.
+- Data: Claude Test spec file format — Adds an optional `area` front-matter key, one lower-case word naming the part of the app a test covers, which Claude Test's panel groups tests by.
+- Data: Rate limit unified windows — Adds per-window `status` and `surpassedThreshold` fields, and says events now also fire when a window's status or threshold changes.
+- Data: SDK set max thinking tokens request schema — Narrows when a `highlights` thinking display is refused: now on Bedrock, Vertex or gateway models older than Claude Opus 4.7, not every non-first-party provider.
+- Skill: Claude guide unavailable reference fallback — The inlined `shared/live-sources.md` tables now drop their third "Extraction prompt" column, leaving only topic and URL.
+- Tool Description: CronCreate — Durability guidance is now inline, with a short "Session-only" notice when durable cron is off; the "Not for live watching" section now always appears instead of only when Monitor is enabled.
+- Tool Description: ListConnectors, Tool Description: SearchMcpRegistry, and Tool Description: SuggestConnectors — Drop the guidance to recommend not-yet-installed connectors (pointing to SearchMcpRegistry → SuggestConnectors, or telling the user to connect via claude.ai).
+
 # [2.1.309](https://github.com/Piebald-AI/claude-code-system-prompts/commit/112a949)
 
 _+8,763 tokens_
